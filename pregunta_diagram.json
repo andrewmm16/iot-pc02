@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "author": "Omar Morales",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -22.8,
+      "left": 186.2,
+      "attrs": { "color": "blue" }
+    },
+    { "type": "wokwi-hc-sr04", "id": "ultrasonic1", "top": -75.3, "left": -167.3, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": -105.4, "left": 57.6, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 51.95,
+      "left": 163.2,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [ [ "esp:TX", "$serialMonitor:RX", "", [] ], [ "esp:RX", "$serialMonitor:TX", "", [] ] ],
+  "dependencies": {}
+}
+
+
+conecta todo segun este enunciado 
+El dispositivo basado en ESP32, incluye un Ultrasound distance sensor, un Led y un Relay module
+conectado a la válvula de agua. El led, de color azul, se enciende cuando el dispositivo se encuentra activo
+y detecta que se traspasa el threshold de 10 cm. (cuando un usuario acerca sus manos al grifo) y se apaga
+cuando no detecta proximidad por debajo del threshold (se alejan las manos del usuario). Cuando el
+sensor de proximidad detecta que se alcanzó el threshold, el Relay Module debe abrir la válvula de agua
+del grifo durante 5 segundos. El flujo de agua es de 1.2 gpm max (4.5L/min) a 60 psi (pounds per square
+inch). El dispositivo muestra periodicamente en consola los valores de proximidad (en cm.) y estado de la
+válvula de agua (open / closed) con una frecuencia de 2.5 segundos. El dispositivo cuenta además con
+conexión WiFi. 
+solo dame el diagram.json para las conexiones
+
+guíate de esto 
+ "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:2", "r1:1", "green", [ "v0" ] ],
+    [ "r1:2", "led1:A", "green", [ "v0" ] ],
+    [ "led1:C", "esp:GND.1", "black", [ "v0" ] ],
+    [ "ultrasonic1:VCC", "esp:3V3", "red", [ "v96", "h129.41" ] ],
+    [ "ultrasonic1:GND", "esp:GND.2", "black", [ "v28.8", "h190.8", "v48" ] ],
+    [ "ultrasonic1:TRIG", "esp:5", "orange", [ "v0" ] ],
+    [ "ultrasonic1:ECHO", "esp:18", "yellow", [ "v0" ] ],
+    [ "relay1:VCC", "esp:3V3", "red", [ "v172.8", "h-163.35" ] ],
+    [ "relay1:GND", "esp:GND.2", "black", [ "v95.6", "h-62.44" ] ],
+    [ "relay1:IN", "esp:4", "blue", [ "v153.4", "h-96" ] ]
+  ],
+
+y hazlo para mi caso sin comentarios 
