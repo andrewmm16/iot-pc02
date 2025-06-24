@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "author": "Omar Morales",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -19.2, "left": -71.96, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": 92.4, "left": 71, "attrs": { "color": "blue" } },
+    { "type": "wokwi-hc-sr04", "id": "ultrasonic1", "top": -142.5, "left": -196.1, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": -115, "left": 48, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 13.55,
+      "left": 105.6,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:2", "r1:1", "green", [ "v0" ] ],
+    [ "r1:2", "led1:A", "green", [ "v0" ] ],
+    [ "led1:C", "esp:GND.1", "black", [ "v0" ] ],
+    [ "ultrasonic1:VCC", "esp:3V3", "red", [ "v96", "h129.41" ] ],
+    [ "ultrasonic1:GND", "esp:GND.2", "black", [ "v28.8", "h190.8", "v48" ] ],
+    [ "ultrasonic1:TRIG", "esp:5", "orange", [ "v0" ] ],
+    [ "ultrasonic1:ECHO", "esp:18", "yellow", [ "v0" ] ],
+    [ "relay1:VCC", "esp:3V3", "red", [ "v172.8", "h-163.35" ] ],
+    [ "relay1:GND", "esp:GND.2", "black", [ "v95.6", "h-62.44" ] ],
+    [ "relay1:IN", "esp:4", "blue", [ "v153.4", "h-96" ] ]
+  ],
+  "dependencies": {}
+}
