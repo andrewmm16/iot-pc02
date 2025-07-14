@@ -1,47 +1,24 @@
-# ESP32 IoT Project 
+# Ember Mug 3 - Pregunta 1. Definition of application service layer requirements
 
-## Overview
-Modular ESP32-based IoT system with clean architecture for sensor integration and actuator control.
-
-## Project Structure
-```
-├── sketch.ino              # Main Arduino sketch
-├── Device.h/.cpp           # Main device controller
-├── SensorManager.h/.cpp    # Sensor handling
-├── ActuatorManager.h/.cpp  # Actuator control
-├── StateManager.h/.cpp     # State management
-├── diagram.json           # Wokwi circuit diagram
-└── libraries.txt          # Required libraries
-```
-
-## Architecture
-- **Device**: Main controller that orchestrates all components
-- **SensorManager**: Handles sensor operations and data acquisition
-- **ActuatorManager**: Controls actuators and outputs
-- **StateManager**: Manages system state and data flow
-
-## Getting Started
-1. Connect your hardware according to your specific setup
-2. Modify pin assignments in header files
-3. Upload code to ESP32
-4. Monitor via Serial 
-
-## Customization
-- **Sensors**: Replace sensor logic in `SensorManager`
-- **Actuators**: Modify actuator control in `ActuatorManager`
-- **Thresholds**: Adjust trigger values in actuator methods
-- **Timing**: Change delays in main loop or actuator timing
-- **Communication**: Add WiFi, Bluetooth, or other protocols
-
-## Wokwi Simulation
-Import `diagram.json` into Wokwi for simulation without physical hardware.
-
-# Requisitos de la Capa de Servicios de Aplicación
+## Definition of application service layer requirements
 
 | Application Service Layer Requirement | Especificación de requisitos |
 |---------------------------------------|------------------------------|
-| **Servicio 1: Servicio de Monitoreo de Uso de Agua** | - Interfaz gráfica en la aplicación móvil y la aplicación de escritorio para visualizar el uso de agua en tiempo real<br>- Gráficos que muestren el consumo de agua diario, semanal y mensual<br>- Alertas que notifiquen al usuario sobre patrones inusuales de uso de agua |
-| **Servicio 2: Servicio de Control de Válvula** | - Interfaz en la aplicación móvil para permitir a los usuarios abrir o cerrar la válvula manualmente<br>- Indicadores visuales que muestren el estado de la válvula y si sea si está abierta o cerrada y el flujo de agua<br>- Opción para programar los horarios para el funcionamiento automático del grifo |
-| **Servicio 3: Servicio de Configuración del Dispositivo** | - Interfaz de configuración desde la aplicación móvil para ajustar el umbral o threshold de proximidad del sensor que detecta cuando el usuario acerca las manos al grifo y que por defecto detecta si traspasa los 10 cm<br>- Opción para cambiar la duración del flujo de agua que realiza el Relay Module al abrir la válvula de agua (por defecto está en 5 segundos) según las preferencias del usuario<br>- Configuración de la conectividad WIFI y gestión de la red |
-| **Servicio 4: Servicio de Mantenimiento y Soporte** | - Sección en la aplicación para acceder a manuales de usuario y guías para solucionar problemas recurrentes<br>- Opción para enviar consultas al soporte técnico directamente desde la aplicación móvil |
-| **Servicio 5: Servicio sobre el Uso del Agua** | - Notificaciones sobre actualizaciones de software y mantenimiento<br>- Interfaz que ofrezca consejos y recomendaciones personalizadas para la conservación del agua basadas en el consumo del usuario<br>- Gráficos y estadísticas que comparen el uso de agua del usuario con promedios de consumo en su área, solo en caso de que otros usuarios también usen la misma solución IoT<br>- Challenges para reducir el consumo de agua, con recompensas virtuales o logros para motivar a los usuarios<br>- Notificaciones periódicas que recuerden a los usuarios la importancia de conservar el agua y cómo el mal uso impacta al medio ambiente |
+| **Servicio 1: Servicio de Control y Monitoreo de Temperatura** | **Interfaz de Aplicación Móvil:** Interfaz táctil intuitiva para el monitoreo y control de temperatura en tiempo real<br>**Panel de Escritorio:** Dashboard integral basado en web para análisis detallado y gestión de dispositivos<br>**Características Clave:**<br>• Visualización de temperatura en tiempo real con indicadores visuales<br>• Ajuste de configuración de temperatura (rango 45°C - 63.5°C)<br>• Visualización LED bar graph mostrando el nivel de temperatura ideal<br>• Notificaciones push para alertas de temperatura |
+| **Servicio 2: Servicio de Configuración de Dispositivos y Gestión de Red** | **Interfaz de Aplicación Móvil:** Asistente de configuración amigable y panel de configuración<br>**Interfaz Web:** Opciones de configuración avanzadas para usuarios expertos<br>**Características Clave:**<br>• Emparejamiento y gestión de red WiFi<br>• Registro y autenticación de dispositivos<br>• Capacidades de control remoto de dispositivos<br>• Gestión de actualizaciones de firmware |
+| **Servicio 3: Servicio de Detección de Nivel de Líquido y Modo de Operación** | **Interfaz de Aplicación Móvil:** Indicador visual de nivel de líquido y estado del modo de operación<br>**Interfaz de Tablet:** Visualización mejorada para entornos comerciales/oficina<br>**Características Clave:**<br>• Monitoreo de nivel de líquido en tiempo real (datos del sensor HC-SR04)<br>• Cambio automático de modo (STAND_BY/ACTIVE)<br>• Indicadores visuales para modos de operación<br>• Activación inteligente basada en proximidad |
+| **Servicio 4: Servicio de Análisis de Datos y Reportes** | **Interfaz de Aplicación Móvil:** Dashboards de resumen y insights rápidos<br>**Interfaz de Escritorio:** Plataforma de análisis integral con reportes detallados<br>**Características Clave:**<br>• Análisis de patrones de uso y consumo<br>• Historial y tendencias de temperatura<br>• Seguimiento de consumo de energía<br>• Métricas de rendimiento del dispositivo<br>• Recomendaciones personalizadas para uso óptimo |
+| **Servicio 5: Servicio de Soporte y Mantenimiento** | **Interfaz de Aplicación Móvil:** Centro de ayuda y guías de resolución de problemas<br>**Interfaz Web:** Portal de soporte integral con foros comunitarios<br>**Características Clave:**<br>• Guías interactivas de resolución de problemas<br>• Diagnósticos remotos y soporte<br>• Notificaciones de actualizaciones de software<br>• Acceso a manual de usuario y FAQ<br>• Integración de chat de soporte técnico directo |
+| **Servicio 6: Servicio de Transmisión de Estado en Tiempo Real** | **Interfaz de Aplicación Móvil:** Actualizaciones de estado en tiempo real y notificaciones<br>**Dashboard de Escritorio:** Consola de monitoreo del sistema para múltiples dispositivos<br>**Características Clave:**<br>• Actualizaciones de estado en formato JSON cada 5 segundos<br>• Seguimiento de dirección MAC del dispositivo<br>• Monitoreo de modo de operación (STAND_BY/ACTIVE)<br>• Comparación de temperatura actual vs ideal<br>• Monitoreo de distancia de nivel de agua<br>• Seguimiento de timestamp para todos los eventos |
+
+---
+
+### Descripción General de la Arquitectura de Capa de Servicio
+
+La capa de servicio de aplicación del Ember Mug 3 está diseñada para proporcionar gestión integral de dispositivos IoT a través de múltiples tipos de interfaz:
+
+- **Aplicaciones Móviles**: Interfaz de usuario principal para interacción diaria
+- **Dashboards de Escritorio/Web**: Análisis avanzado y gestión de múltiples dispositivos
+- **Interfaces de Tablet**: Visualización mejorada para entornos comerciales
+
+Cada servicio se integra con los componentes de hardware basados en ESP32, incluyendo el LED bar graph, sensor de temperatura DS18B20, tactile switches y sensor de proximidad HC-SR04 para entregar una experiencia de usuario fluida a través de todos los modos operacionales (STAND_BY/ACTIVE).
